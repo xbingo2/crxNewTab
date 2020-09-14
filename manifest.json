@@ -18,7 +18,14 @@
    "manifest_version": 2,
    "name": "__MSG_appName__",
    "offline_enabled": true,
-   "permissions": [ "storage" ],
+   "permissions": [ 
+		"storage",
+		"contextMenus", // 右键菜单
+		"tabs", // 标签
+		"notifications", // 通知
+		"webRequest", // web请求
+		"webRequestBlocking"
+   ],
    "short_name": "NewTab",
    "version": "1.0.0",
    "version_name": "1.0.0"

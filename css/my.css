@@ -5,15 +5,20 @@
 .search	input {
 	height: 40px;
     width: 450px;
-    font-size: 25px;
+    font-size: 20px;
 	border-radius: 5px;
     border: 0;
 	padding: 5px;
 }
 
+@font-face {
+  font-family: SpecialElite; 
+  src: url('../assets/fonts/SpecialElite.ttf'); 
+} 
 .clock {
 	color:white;
 	font-size: 80px;
 	text-align: center;
 	margin: 5%;
+	font-family: SpecialElite;
 }
