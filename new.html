@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/my.css">
 	</head>
 	<body>
-
+		<iframe class="weather" src="https://tianqiapi.com/api.php?style=te&skin=pitaya&color=FFFFFF&align=right&paddingtop=10&fontsize=17" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
 		<div class="canvas">
 			<div class="stars">
 				<div class="star star-1 opacity-quarter"></div>
@@ -145,13 +145,12 @@
 		</div>
 
 		<form class="search" action="http://www.baidu.com/s" method="GET" target="_blank">
-			<input type="text" name="wd" autocomplete="off" />
+			<input type="text" name="wd" autocomplete="off" placeholder=""/>
 			<input type="hidden" name="ie" value="utf-8" />
 			<input type="hidden" name="tn" value="ace" />
 		</form>
 
 		<div class="clock"></div>
-		
 		<script src="js/vendor/jquery-3.2.1.min.js"></script>
 		<script src="js/vendor/moment-with-locales.js"></script>
 		<script src="js/myscript.js"></script>
