@@ -24,9 +24,16 @@
 		"tabs", // 标签
 		"notifications", // 通知
 		"webRequest", // web请求
-		"webRequestBlocking"
+		"webRequestBlocking",
+		"http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+		"https://*/*" // 可以通过executeScript或者insertCSS访问的网站
    ],
    "short_name": "NewTab",
    "version": "1.0.0",
-   "version_name": "1.0.0"
+   "version_name": "1.0.0",
+   "options_ui":
+	{
+    	"page": "options.html",
+    	"chrome_style": true
+	}
 }

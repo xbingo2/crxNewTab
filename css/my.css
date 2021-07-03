@@ -19,7 +19,7 @@
 	color:white;
 	font-size: 80px;
 	text-align: center;
-	margin: 5%;
+	margin-top: 3%;
 	font-family: SpecialElite;
 }
 
@@ -28,3 +28,11 @@
 	height: 30px;
 	padding-right: 20px;
 }
+
+.tq {
+	position: absolute;
+    right: 0px;
+    width: 200px;
+    height: 30px;
+}
+   
