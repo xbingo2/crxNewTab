@@ -69,7 +69,6 @@ function createNotification(name, newTitle) {
 	}
 }
 
-
 // http://www.mangabz.com/ 漫画网站
 function getMangabz(doc, obj){
 	var newTitle = doc.getElementsByClassName("detail-list-form-title")[0].children[1].children[0].children[0].textContent;
