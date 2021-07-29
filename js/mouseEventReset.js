@@ -18,3 +18,6 @@ function injectCustomJs(jsPath)
 	};
 	document.body.appendChild(temp);
 }
+
+
+

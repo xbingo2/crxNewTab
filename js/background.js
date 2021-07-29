@@ -5,6 +5,8 @@ chrome.contextMenus.create({
 	}
 });
 
+checkAll();
+
 setInterval(function(){
 	checkAll();
 }, 60*60*1000);
@@ -56,35 +58,43 @@ function getAllUpdate(obj) {
 }
 
 // 创建通知
-function createNotification(name, newTitle) {
+function createNotification(name, newTitle, url) {
 	var oldTitle = window.localStorage.getItem(name);
+	var notifId = new Date().getTime() + '';
 	if (newTitle != oldTitle) {
-		chrome.notifications.create(null, {
+		var notif = chrome.notifications.create(notifId, {
 			type: 'basic',
 			iconUrl: '../../assets/img/icon128.png',
 			title: name,
 			message: newTitle
 		});
 		window.localStorage.setItem(name, newTitle);
+		
+		// 点击打开对应的页面
+		chrome.notifications.onClicked.addListener((id)=>{
+			if (notifId == id) {
+				window.open(url);
+			}
+		});
 	}
 }
 
 // http://www.mangabz.com/ 漫画网站
 function getMangabz(doc, obj){
 	var newTitle = doc.getElementsByClassName("detail-list-form-title")[0].children[1].children[0].children[0].textContent;
-	createNotification(obj.name, newTitle);
+	createNotification(obj.name, newTitle, obj.url);
 }
 
 
 // http://www.alimanhua.com 漫画网站
 function getAlimanhua(doc, obj) {
 	var newTitle = doc.getElementById("play_0").children[0].children[0].children[0].textContent;
-	createNotification(obj.name, newTitle);
+	createNotification(obj.name, newTitle, obj.url);
 }
 
 // https://www.80s.tw/
 function get80S(doc, obj) {
 	var newTitle = doc.getElementsByClassName("xunlei dlbutton1")[0].children[0].getAttribute("thunderrestitle");
-	createNotification(obj.name, newTitle);
+	createNotification(obj.name, newTitle, obj.url);
 }
 
