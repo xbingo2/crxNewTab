@@ -4,7 +4,7 @@
 
 #### 1.1、chrome插件-自定义新标签页
 
-![image-20210730093942235](C:\Users\xubin\AppData\Roaming\Typora\typora-user-images\image-20210730093942235.png)
+![image-20210730093942235](https://raw.githubusercontent.com/xbingo2/readmeImg/main/crxNewTabImg/image-20210730093942235.png)
 
 新标签页效果如上图所示，如果用户想修改，可自行替换项目中的new.html,重启chrome即可。
 
@@ -28,9 +28,9 @@ csdn在复制代码时会添加上博主的版权信息，让开发不便。经�
 
 本插件实现原理为定时发送请求（在这里请求使用的是js的fetch,fetch可以跨域，这里为什么会跨域呢？因为插件本质上为网站，其地址为chrome-extension://插件ID/background.html,这里域名和其他网站不一样就会出现跨域访问的问题）去获取配置的上述三个网站中想看的资源url，解析返回数据中最新的目录和localstorage中比较，如果有更新则会有桌面弹窗提醒，点击弹窗即可打开对象资源页面，最快获取更新内容。代码位置为background.js中。目前在每次打开chrome浏览器时会自动检测一次，定时任务会每个小时检查一下。配置想看的资源目前还不人性化，通过json配置，配置界面和如何打开如下图所示，配置页代码为options.html
 
-![image-20210730101943492](C:\Users\xubin\AppData\Roaming\Typora\typora-user-images\image-20210730101943492.png)
+![image-20210730101943492](https://raw.githubusercontent.com/xbingo2/readmeImg/main/crxNewTabImg/image-20210730101943492.png)
 
-![image-20210730102103058](C:\Users\xubin\AppData\Roaming\Typora\typora-user-images\image-20210730102103058.png)
+![image-20210730102103058](https://raw.githubusercontent.com/xbingo2/readmeImg/main/crxNewTabImg/image-20210730102103058.png)
 
 配置目前使用的是json方式，配置如下
 
@@ -64,7 +64,7 @@ csdn在复制代码时会添加上博主的版权信息，让开发不便。经�
 
 ### 3、结语
 
-用户如果有好的想法可以联系本人，将功能添加到该插件中，本插件的出现主要是看到某个插件可以自定义chrome的新标签页，觉得这个还挺不错的，是不是可以自己也弄一个。经过搜索发现一个chrome插件入门的好博文，分享给大家https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html，跟着做一般相信大家也可以写出插件。
+用户如果有好的想法可以联系本人，将功能添加到该插件中，本插件的出现主要是看到某个插件可以自定义chrome的新标签页，觉得这个还挺不错的，是不是可以自己也弄一个。经过搜索发现一个chrome插件入门的好博文，分享给大家https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html， 跟着做一遍相信大家也可以写出插件。
 
 
 
