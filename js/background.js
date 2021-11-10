@@ -32,7 +32,7 @@ function getAllUpdate(obj) {
     };
 
 	var myRequest = new Request(obj.url, myInit);
-	if (obj.type == "alimanhua") {
+	if (obj.type == "GBK") {
 		// 处理网页编码为GBK的网站
 		fetch(myRequest).then(res=> res.blob()).then(blob => {
         	var reader = new FileReader();
@@ -40,7 +40,7 @@ function getAllUpdate(obj) {
          		var text = reader.result;
           		var parser = new DOMParser()
 				var doc = parser.parseFromString(text, 'text/html');
-				window[_FUN[obj.type]](doc, obj);
+				getNewTitle(doc, obj);
         	}
         	reader.readAsText(blob, 'GBK') 
     	})
@@ -51,10 +51,15 @@ function getAllUpdate(obj) {
 		}).then((text)=>{
 			var parser = new DOMParser()
 			var doc = parser.parseFromString(text, 'text/html');
-			window[_FUN[obj.type]](doc, obj);
+			getNewTitle(doc, obj);
   		})
 	}
 	
+}
+
+function getNewTitle(doc, obj) {
+	var newTitle = doc.querySelector(obj.selector).textContent.trim();
+	createNotification(obj.name, newTitle, obj.url);
 }
 
 // 创建通知
@@ -77,24 +82,5 @@ function createNotification(name, newTitle, url) {
 			}
 		});
 	}
-}
-
-// http://www.mangabz.com/ 漫画网站
-function getMangabz(doc, obj){
-	var newTitle = doc.getElementsByClassName("detail-list-form-title")[0].children[1].children[0].children[0].textContent;
-	createNotification(obj.name, newTitle, obj.url);
-}
-
-
-// http://www.alimanhua.com 漫画网站
-function getAlimanhua(doc, obj) {
-	var newTitle = doc.getElementById("play_0").children[0].children[0].children[0].textContent;
-	createNotification(obj.name, newTitle, obj.url);
-}
-
-// https://www.80s.tw/
-function get80S(doc, obj) {
-	var newTitle = doc.getElementsByClassName("xunlei dlbutton1")[0].children[0].getAttribute("thunderrestitle");
-	createNotification(obj.name, newTitle, obj.url);
 }
 
