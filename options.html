@@ -2,18 +2,79 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<style>
-	</style>
+	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="css/my.css">
 	<title>配置页</title>
 </head>
 <body>
-	<h1>配置页</h1>
-	<div>
-	<textarea id="config" rows="25" cols="80">
-		
-	</textarea>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href=""> <img src="assets/img/icon128.png" width="30" height="30" alt=""></a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="">配置<span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+	<form class="form-inline m-2">
+		<button class="btn btn-outline-success" type="button" id="addBtn">新增</button>
+	</form>
+	<table class="table table-bordered mytable">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col-2" >序号</th>
+				<th scope="col-4" >名称</th>
+				<th scope="col-6" >网址</th>
+				<th scope="col-6" >选择器</th>
+				<th scope="col-2" >编码</th>
+				<th scope="col-4" >操作</th>
+			</tr>
+		</thead>
+		<tbody id = 'tb'>
+	
+		</tbody>
+	</table>
+	
+	<div id="dialog" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="dialog-title">修改</h5>
+	        </button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<input type="text" class="form-control modal" id="dialog-index">
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">名称:</label>
+							<input type="text" class="form-control" id="dialog-name">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">网址:</label>
+							<input type="text" class="form-control" id="dialog-url">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">选择器:</label>
+							<input type="text" class="form-control" id="dialog-selector">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">编码:</label>
+							<input type="text" class="form-control" id="dialog-type">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="dialog-save">保存</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">取消</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	<button type="button" id="save">保存配置</button><a id="msg"></a>
+	</div>
+	<script src="js/vendor/jquery-3.2.1.min.js"></script>
+	<script src="bootstrap/bootstrap.min.js"></script>
 	<script src="js/constants.js"></script>
 	<script src="js/options.js"></script>
 </body>
