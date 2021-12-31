@@ -101,9 +101,9 @@ function setMyInterval() {
 		var long = new Date(nowDateStr).getTime() - myDate.getTime();
 		if (long > 0 && long <= obj.before * 60 * 1000) {
 			createNotification("定时提醒", obj.msg)
-			if (obj.repeat == '是') {
-				newArray.push(obj)
-			}
+		}
+		if (obj.repeat == '是') {
+			newArray.push(obj)
 		}
 	}
 	setIntervalLocalStorage(newArray);
