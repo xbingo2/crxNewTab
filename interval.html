@@ -4,18 +4,18 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="css/my.css">
-	<title>更新获取</title>
+	<title>定时提醒</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href=""> <img src="assets/img/icon128.png" width="30" height="30" alt=""></a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="">更新获取<span class="sr-only">(current)</span></a>
-				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="interval.html">定时提醒<span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="options.html">更新获取<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="">定时提醒<span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
 		</div>
@@ -28,10 +28,10 @@
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col-2" >序号</th>
-				<th scope="col-4" >名称</th>
-				<th scope="col-6" >网址</th>
-				<th scope="col-6" >选择器</th>
-				<th scope="col-2" >编码</th>
+				<th scope="col-4" >提示信息</th>
+				<th scope="col-6" >提示时间</th>
+				<th scope="col-6" >是否循环</th>
+				<th scope="col-2" >提前多久提醒</th>
 				<th scope="col-4" >操作</th>
 			</tr>
 		</thead>
@@ -51,20 +51,38 @@
 					<form>
 						<input type="text" class="form-control modal" id="dialog-index">
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">名称:</label>
-							<input type="text" class="form-control" id="dialog-name">
+							<label for="recipient-name" class="col-form-label">提示信息:</label>
+							<input type="text" class="form-control" id="dialog-msg">
 						</div>
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">网址:</label>
-							<input type="text" class="form-control" id="dialog-url">
+							<label for="recipient-name" class="col-form-label">提示时间:</label>
+							<div class="form-row">
+								<div class="col-md-4 mb-3">
+									<input type="number" class="form-control" id="dialog-hour">
+								</div>
+								<div class="col-md-4 mb-3">
+									<input type="number" class="form-control" id="dialog-minute" value="00">
+								</div>
+								<div class="col-md-4 mb-3">
+									<input type="number" class="form-control" id="dialog-second" value="00">
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">选择器:</label>
-							<input type="text" class="form-control" id="dialog-selector">
+							<label for="recipient-name" class="col-form-label">是否循环:</label>
+							<select class="custom-select my-1 mr-sm-2" id="dialog-repeat">
+								<option selected value="否">否</option>
+								<option value="是">是</option>
+							</select>
 						</div>
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">编码:</label>
-							<input type="text" class="form-control" id="dialog-type">
+							<label for="recipient-name" class="col-form-label">提前多久提醒(分钟):</label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" id="dialog-before">
+								<div class="input-group-append">
+									<span class="input-group-text" id="basic-addon2">分钟</span>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -79,6 +97,6 @@
 	<script src="js/vendor/jquery-3.2.1.min.js"></script>
 	<script src="bootstrap/bootstrap.min.js"></script>
 	<script src="js/constants.js"></script>
-	<script src="js/options.js"></script>
+	<script src="js/interval.js"></script>
 </body>
 </html>

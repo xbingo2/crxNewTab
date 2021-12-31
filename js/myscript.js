@@ -19,6 +19,6 @@ $.ajax({
   
 $(function() {
 	$( "#draggable" ).draggable({
-    containment: $('body')
+    containment: [0, 0, document.body.clientWidth - 50, document.body.offsetHeight - 50]
 });
 });

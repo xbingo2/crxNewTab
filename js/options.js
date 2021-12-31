@@ -73,7 +73,7 @@ $("#dialog-save").click(function() {
 	}
 	else if (title == '新增'){
 		chrome.storage.sync.get(_CONFIG, function(items) {
-			var array = items.mangabz;
+			var array = items.mangabz ? items.mangabz : [];
 			array.push(obj)
 			chrome.storage.sync.set({"mangabz":array}, function() {
 				$('#dialog').modal('hide');

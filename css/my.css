@@ -52,3 +52,7 @@
 	height: 150px; 
 	padding: 0.5em; 
 }
+
+html, body{
+	height: 100%;
+}

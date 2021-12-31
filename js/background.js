@@ -73,14 +73,38 @@ function createNotification(name, newTitle, url) {
 			title: name,
 			message: newTitle
 		});
-		window.localStorage.setItem(name, newTitle);
-		
-		// 点击打开对应的页面
-		chrome.notifications.onClicked.addListener((id)=>{
-			if (notifId == id) {
-				window.open(url);
-			}
-		});
+		if (url) {
+			window.localStorage.setItem(name, newTitle);
+			// 点击打开对应的页面
+			chrome.notifications.onClicked.addListener((id)=>{
+				if (notifId == id) {
+					window.open(url);
+				}
+			});
+		}
+
 	}
 }
 
+//定时提醒功能
+setInterval(function(){
+	setMyInterval();
+}, 60*1000);
+
+function setMyInterval() {
+	var array = getIntervalLocalStorage();
+	var myDate = new Date();
+	var newArray = [];
+	for (var i = 0; i < array.length; i ++) {
+		var obj = array[i];
+		var nowDateStr = myDate.getFullYear() + "-" + (myDate.getMonth()+1) + "-" + myDate.getDate() + " " + obj.time;
+		var long = new Date(nowDateStr).getTime() - myDate.getTime();
+		if (long > 0 && long <= obj.before * 60 * 1000) {
+			createNotification("定时提醒", obj.msg)
+			if (obj.repeat == '是') {
+				newArray.push(obj)
+			}
+		}
+	}
+	setIntervalLocalStorage(newArray);
+}
