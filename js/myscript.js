@@ -7,7 +7,7 @@ setInterval(updateClock, 1000);
 //获取天气信息
 $.ajax({
         type: 'GET',
-        url: 'https://www.yiketianqi.com/free/day?appid=23035354&appsecret=8YvlPNrz',
+        url: 'https://www.yiketianqi.com/free/day?appid=36836482&appsecret=v0o3PCCn ',
         dataType: 'JSON',
         error: function () {
             alert('网络错误');
