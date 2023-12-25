@@ -33,33 +33,47 @@ function getAllUpdate(obj) {
 
 	var myRequest = new Request(obj.url, myInit);
 	if (obj.type == "GBK") {
-		// 处理网页编码为GBK的网站
-		fetch(myRequest).then(res=> res.blob()).then(blob => {
-        	var reader = new FileReader();
-        	reader.onload = function(e) {
-         		var text = reader.result;
-          		var parser = new DOMParser()
-				var doc = parser.parseFromString(text, 'text/html');
-				getNewTitle(doc, obj);
-        	}
-        	reader.readAsText(blob, 'GBK') 
-    	})
+		try {
+			// 处理网页编码为GBK的网站
+			fetch(myRequest).then(res=> res.blob()).then(blob => {
+	        	var reader = new FileReader();
+	        	reader.onload = function(e) {
+	         		var text = reader.result;
+	          		var parser = new DOMParser()
+					var doc = parser.parseFromString(text, 'text/html');
+					getNewTitle(doc, obj);
+	        	}
+	        	reader.readAsText(blob, 'GBK') 
+	    	})
+		} catch(e) {
+			
+		}
+		
 	}
 	else {
-		fetch(myRequest).then((res)=>{
-    		return res.text();
-		}).then((text)=>{
-			var parser = new DOMParser()
-			var doc = parser.parseFromString(text, 'text/html');
-			getNewTitle(doc, obj);
-  		})
+		try {
+			fetch(myRequest).then((res)=>{
+	    		return res.text();
+			}).then((text)=>{
+				var parser = new DOMParser()
+				var doc = parser.parseFromString(text, 'text/html');
+				getNewTitle(doc, obj);
+	  		})
+		} catch(e) {
+			
+		}
 	}
 	
 }
 
 function getNewTitle(doc, obj) {
-	var newTitle = doc.querySelector(obj.selector).textContent.trim();
-	createNotification(obj.name, newTitle, obj.url);
+	try {
+		var newTitle = doc.querySelector(obj.selector).textContent.trim();
+		createNotification(obj.name, newTitle, obj.url);
+	} catch(e) {
+			
+	}
+	
 }
 
 // 创建通知
@@ -95,16 +109,21 @@ function setMyInterval() {
 	var array = getIntervalLocalStorage();
 	var myDate = new Date();
 	var newArray = [];
+	
 	for (var i = 0; i < array.length; i ++) {
 		var obj = array[i];
 		var nowDateStr = myDate.getFullYear() + "-" + (myDate.getMonth()+1) + "-" + myDate.getDate() + " " + obj.time;
 		var long = new Date(nowDateStr).getTime() - myDate.getTime();
 		if (long > 0 && long <= obj.before * 60 * 1000) {
 			createNotification("定时提醒", obj.msg)
+			if (obj.repeat == '是') {
+				newArray.push(obj);
+			}
 		}
-		if (obj.repeat == '是') {
-			newArray.push(obj)
+		else {
+			newArray.push(obj);
 		}
 	}
 	setIntervalLocalStorage(newArray);
+	
 }
